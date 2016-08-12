@@ -1,0 +1,92 @@
+=================
+Short Description
+=================
+
+We create objects (Artifacts) on a blockchain. These Artifacts are created by combining two or more Artifacts of the same type and executing a genetic algorithm. In addition of the set of values that comprise the unique Artifact, it also links back to it's ancestors in a pedigree chain.
+
+Each Artifact provides a public method that allows it to be combined to create new Artifacts. This method can be configured to change a fee for use.
+
+========================
+Use Case - Ether Flowers
+========================
+
+Imagine a function (Visualizer) that produces a 3d visualization of a flower using a set of values (genes) as input. The function itself is immaterial, but some sort of fractal seems like a good candidate. The Visualizer is custom build to make 3d flowers, but the genes determine things like stem length and thickness, number of petals, petal shape, color(s), texture etc.
+
+An Ether Flower has the following properties
+
+	- A set of genes used for physically rendering it
+	- A set of genes that describe how it reproduces (how many times it can be used to reproduce etc)
+	- A set of genes that describe how it changes over time and how long it lives
+	
+When a flower is generated it stores these values in the blockchain. Using the visualizer, a user would specify the address of a flower. In addition to the genes of the flower, the visualizer would use a value associated with the block the flower was minted in. 
+
+The user would then see the flower grow, develop through its lifecycle and eventually die. While the flower is alive it can be publically accessed as a parent to create new flowers.
+
+Example
+-------
+
+A simple visualizer exists that considers the following genes.
+
+Stem height: 1 to 10
+Stem Thickness: 1 to 10
+Bulb Thickness: 1 to 10
+Petals: 10 to 20
+Stem brightness: 1 to 5
+Petal Red: 0 to 255
+Petal Blue: 0 to 255
+Petal Green: 0 to 255
+Lifespan (in days): 5 to 25
+Maturity Peak: 0% to 100%
+
+	Sample Flower 1 (Stubby Blue Flower)
+		Stem height: 2
+		Stem Thickness: 8
+		Bulb Thickness: 3
+		Petals: 10
+		Stem brightness: 1
+		Petal Red: 16
+		Petal Blue: 64
+		Petal Green: 0
+		Lifespan (in days): 5
+		Maturity Peak: 10%
+		Max Number of Children: 25
+
+	Sample Flower 2 (Spindly Rose)
+		Stem height: 8
+		Stem Thickness: 2
+		Bulb Thickness: 8
+		Petals: 20
+		Stem brightness: 7
+		Petal Red: 128
+		Petal Blue: 32
+		Petal Green: 16
+		Lifespan (in days): 10
+		Maturity Peak: 80%
+		Max Number of Children: 5
+
+When you visualize the first flower you will see a short, stubby dark green stem with dark blue petals. It quickly reaches maturity and stops growing. After 5 days it withers and dies. 
+
+When you visualize the second flower you will see a tall, thin bright green stem holding a red flower with a some blue and a hint of green. It takes about a week to mature.
+
+Breeding
+--------
+
+In addition to the descriptive genes, the flowers have genes that describe their breeding. These are:
+
+Max Number of Children: 0 to 100
+Weight of genes: 1 to 10
+
+	Sample Flower 1 (Stubby Blue Flower)
+		Max Number of Children: 25
+		Weight of genes: 7
+
+	Sample Flower 2 (Spindly Rose)
+		Max Number of Children: 5
+		Weight of genes: 2
+
+We could mix these two flowers with a very simple algorithm (in reality any intersting genetic algorithm will be more complex).
+
+each child gene = ((parent1 gene * parent1 gene weight) + (parent2 gene * parent2 gene weight)) / 2
+
+This would produce a new flower that is a simply combination of the two.	
+	
